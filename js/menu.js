@@ -1,12 +1,13 @@
 $(document).ready(function() {
-    $('.nav-link').click(function(e){
-         e.preventDefault()
 
-         let url =$(this).attr('href')
+    $('.nav-link').click(function(e) {
+        e.preventDefault()
 
-         $('#content').empty()
+        let url = $(this).attr('href')
 
-         $('#content').load(url)
+        $('#content').empty()
 
+        $('#content').load(url)
     })
+
 })
