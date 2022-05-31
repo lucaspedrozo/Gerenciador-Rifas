@@ -1,10 +1,18 @@
 <?php
 
-    // Declarar as variáveis necessárias para a conexão com o banco de dados........
-    $hostname = "sql102.epizy.com"; //Nome do servidor que se encontra nosso banco de dados
-    $dbname = "epiz_31453952_RIFAS"; //Nome do nosso banco de dados
-    $username = "epiz_31453952"; //Nome do usuário para acesso ao banco de daddos
-    $password = "pM9qN6XY30qv"; //Senha de acesso ao nosso banco de daddos
+    // conexao online
+    //$hostname = "sql102.epizy.com"; //Nome do servidor que se encontra nosso banco de dados
+    //$dbname = "epiz_31453952_RIFAS"; //Nome do nosso banco de dados
+    //$username = "epiz_31453952"; //Nome do usuário para acesso ao banco de daddos
+    //$password = "pM9qN6XY30qv"; //Senha de acesso ao nosso banco de daddos
+
+
+    //conexao off line
+    $hostname = "localhost";
+    $dbname = "rifas";
+    $username = "root";
+    $password = "";
+
 
     try {
         $pdo = new PDO('mysql:host='.$hostname.';dbname='.$dbname, $username, $password);
