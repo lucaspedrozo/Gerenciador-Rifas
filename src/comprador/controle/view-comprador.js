@@ -1,10 +1,9 @@
 $(document).ready(function() {
 
+
     $('#table-comprador').on('click', 'button.btn-view', function(e) {
 
-        e.preventDefault()
-
-        // Alterar as informações do modal para apresentação dos dados
+        e.preventDefault();
 
         $('.modal-title').empty()
         $('.modal-body').empty()
@@ -18,27 +17,26 @@ $(document).ready(function() {
             dataType: 'json',
             assync: true,
             data: ID,
-            url: 'src/comprador/model/view-comprador.php',
+            url: 'src/comprador/modelo/view-comprador.php',
             success: function(dado) {
-                if (dado.comprador == "success") {
-                    $('.modal-body').load('src/comprador/view/form-comprador.html', function() {
+                if (dado.tipo == "success") {
+                    $('.modal-body').load('src/comprador/visao/form-comprador.html', function() {
                         $('#NOME').val(dado.dados.NOME)
                         $('#NOME').attr('readonly', 'true')
-                        $('#CELULAR').val(dado.dados.CELULAR)
-                        $('#CELULAR').attr('readonly', 'true')
+                        $('#NOME').val(dado.dados.NOME)
+                        $('#NOME').attr('readonly', 'true')
                     })
                     $('.btn-save').hide()
                     $('#modal-comprador').modal('show')
                 } else {
-                    Swal.fire({ // Inicialização do SweetAlert
-                        title: 'e-Rifa', // Título da janela SweetAler
-                        text: dado.mensagem, // Mensagem retornada do microserviço
-                        type: dado.tipo, // comprador de retorno [success, info ou error]
+                    Swal.fire({
+                        title: 'e-rifa',
+                        text: dado.mensagem,
+                        type: dado.tipo,
                         confirmButtonText: 'OK'
                     })
                 }
             }
         })
-
     })
 })

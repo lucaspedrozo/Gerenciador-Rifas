@@ -1,12 +1,8 @@
 $(document).ready(function() {
 
-    $('.close, #close').click(function(e) {
-        e.preventDefault()
-        $('#modal-comprador').modal('hide')
-    })
-
     $('.btn-save').click(function(e) {
-        e.preventDefault()
+
+        e.preventDefault();
 
         let dados = $('#form-comprador').serialize()
 
@@ -17,10 +13,10 @@ $(document).ready(function() {
             dataType: 'json',
             assync: true,
             data: dados,
-            url: 'src/comprador/model/save-comprador.php',
+            url: 'src/comprador/modelo/save-comprador.php',
             success: function(dados) {
                 Swal.fire({
-                    title: 'Sistema de rifas',
+                    title: 'e-rifa',
                     text: dados.mensagem,
                     icon: dados.tipo,
                     confirmButtonText: 'OK'

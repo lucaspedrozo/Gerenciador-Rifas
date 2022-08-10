@@ -18,16 +18,14 @@
         $ID = isset($requestData['ID']) ? $requestData['ID'] : '';
         $operacao = isset($requestData['operacao']) ? $requestData['operacao'] : '';
 
-        // Verifica se é para cadastra um nvo registro
+        // Verifica se é para cadastrar um novo registro
         if($operacao == 'insert'){
             // Prepara o comando INSERT para ser executado
             try{
-                $stmt = $pdo->prepare('INSERT INTO TIPO (NOME, CELULAR) VALUES (:a, :b)');
+                $stmt = $pdo->prepare('INSERT INTO COMPRADOR (NOME, CELULAR) VALUES (:a, :b)');
                 $stmt->execute(array(
-                    //':a' => utf8_decode($requestData['NOME']) 
-                    ':a' => $requestData['NOME']
+                    ':a' => $requestData['NOME'],
                     ':b' => $requestData['CELULAR']
-
                 ));
                 $dados = array(
                     "tipo" => 'success',
@@ -36,16 +34,16 @@
             } catch(PDOException $e) {
                 $dados = array(
                     "tipo" => 'error',
-                    "mensagem" => 'Não foi possível salvar o registro: .'.$e
+                    "mensagem" => 'Não foi possível efetuar o cadastro do comprador.'
                 );
             }
         } else {
             // Se minha variável operação estiver vazia então devo gerar os scripts de update
             try{
-                $stmt = $pdo->prepare('UPDATE TIPO SET (NOME, CELULAR) = :a, :b WHERE ID = :id');
+                $stmt = $pdo->prepare('UPDATE COMPRADOR SET NOME = :a, CELULAR = :b WHERE ID = :id');
                 $stmt->execute(array(
                     ':id' => $ID,
-                    ':a' => $requestData['NOME']
+                    ':a' => $requestData['NOME'],
                     ':b' => $requestData['CELULAR']
                 ));
                 $dados = array(
@@ -55,11 +53,11 @@
             } catch (PDOException $e) {
                 $dados = array(
                     "tipo" => 'error',
-                    "mensagem" => 'Não foi possível efetuar o alteração do registro.'.$e
+                    "mensagem" => 'Não foi possível efetuar a alteração do registro.'
                 );
             }
         }
     }
 
-    // Converter um array ded dados para a representação JSON
+    // Converter um array de dados para a representação JSON
     echo json_encode($dados);
